@@ -7,7 +7,6 @@
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackQueryHandler
 from telegram import InlineKeyboardMarkup, InlineKeyboardButton
 from datetime import date, datetime, timedelta
-from emoji import emojize
 import logging
 import os
 
@@ -38,7 +37,7 @@ def build_menu(buttons, n_cols, header_buttons=None, footer_buttons=None):
 def button(bot, update):
     query = update.callback_query
     option, choice = query.data.split()
-    sad = emojize(':disappointed_face:', use_aliases=True)
+    sad = 😞
 
     apology = "Sorry, it was a joke, due to the fact, that I can't fix some bugs in translating " +  sad
 
