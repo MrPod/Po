@@ -7,12 +7,13 @@
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackQueryHandler
 from telegram import InlineKeyboardMarkup, InlineKeyboardButton
 from datetime import date, datetime, timedelta
+from emoji import emojize
 import logging
 import os
 
 import botan
 
-TOKEN = '597287506:AAHji4feYsBmFfjFJAnxhEkROqmAYS1bjjc'
+TOKEN = '597287506:AAH7EZNv5M2vj5xKbYTgWMSmBcvD2gCdbqw'
 YANDEX_TOKEN = '4bf3b480-3ded-47f3-8544-723485c9b3ab'
 PORT = int(os.environ.get('PORT', '8443'))
 
@@ -37,8 +38,9 @@ def build_menu(buttons, n_cols, header_buttons=None, footer_buttons=None):
 def button(bot, update):
     query = update.callback_query
     option, choice = query.data.split()
+    sad = emojize(':disappointed_face:', use_aliases=True)
 
-    apology = "Sorry, it was a joke, due to the fact, that I can't fix some bugs in translating );"
+    apology = "Sorry, it was a joke, due to the fact, that I can't fix some bugs in translating " +  sad
 
     bot.edit_message_text(text=apology if option == 'language' else "Chosen {}: {}".format(option, choice),
                           chat_id=query.message.chat_id,
@@ -153,9 +155,10 @@ dispatcher.add_handler(unknown_handler)
 
 updater.dispatcher.add_error_handler(error)
 
+updater.start_polling()
 
-updater.start_webhook(listen="0.0.0.0",
-                      port=PORT,
-                      url_path=TOKEN)
-updater.bot.set_webhook("https://warm-tor-12956.herokuapp.com/" + TOKEN)
-updater.idle()
+# updater.start_webhook(listen="0.0.0.0",
+#                      port=PORT,
+#                      url_path=TOKEN)
+# updater.bot.set_webhook("https://warm-tor-12956.herokuapp.com/" + TOKEN)
+# updater.idle()
