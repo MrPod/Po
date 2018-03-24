@@ -37,9 +37,8 @@ def build_menu(buttons, n_cols, header_buttons=None, footer_buttons=None):
 def button(bot, update):
     query = update.callback_query
     option, choice = query.data.split()
-    sad = 😞
 
-    apology = "Sorry, it was a joke, due to the fact, that I can't fix some bugs in translating " +  sad
+    apology = "Sorry, it was a joke, due to the fact, that I can't fix some bugs in translating 😞"
 
     bot.edit_message_text(text=apology if option == 'language' else "Chosen {}: {}".format(option, choice),
                           chat_id=query.message.chat_id,
